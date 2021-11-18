@@ -1,0 +1,9 @@
+{
+    "cSpell.words": [
+        "originalname",
+        "wenkai"
+    ],
+    "files.exclude": {
+        "**/node_modules": true
+    }
+}
