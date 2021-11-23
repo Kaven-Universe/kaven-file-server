@@ -4,10 +4,10 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /server.js
  * @create:      2021-11-18 15:22:36.251
- * @modify:      2021-11-18 16:31:17.268
+ * @modify:      2021-11-23 18:06:47.696
  * @version:     1.0.1
- * @times:       14
- * @lines:       81
+ * @times:       18
+ * @lines:       83
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
@@ -16,6 +16,7 @@
 const { Router } = require("express");
 const fs = require("fs");
 const multer = require("multer");
+const { FileSize } = require("kaven-utils");
 
 module.exports = function KavenFileServer(dir, filedName = "file") {
 
@@ -35,15 +36,14 @@ module.exports = function KavenFileServer(dir, filedName = "file") {
         },
         filename: function(req, file, cb) {
             const name = file.originalname;
-            // console.log(`filename: ${name}`);
             cb(null, name);
         },
     });
 
-    const upload = multer({
+    const m = multer({
         storage: storage,
-        // dest: path.join(__dirname, 'uploads')
-    }).single(filedName);
+    });
+    const upload = filedName ? m.array(filedName) : m.any();
 
     router.get("/", (req, res) => {
         res.send("Kaven File Server");
@@ -65,7 +65,9 @@ module.exports = function KavenFileServer(dir, filedName = "file") {
                 // Make sure that fields are sent before files.
                 //const { type, description } = req.body;
 
-                console.log(`file uploaded: ${req.file?.path}`);
+                for (const file of req.files) {
+                    console.log(`file uploaded: ${file.filename}, ${FileSize(file.size)}`);
+                }
 
                 // Everything went fine
                 return res.sendStatus(200);
