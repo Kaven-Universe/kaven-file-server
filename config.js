@@ -4,9 +4,9 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /config.js
  * @create:      2021-11-23 17:30:37.304
- * @modify:      2021-11-23 17:48:36.604
+ * @modify:      2021-11-23 18:19:23.360
  * @version:     1.0.1
- * @times:       3
+ * @times:       4
  * @lines:       60
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
@@ -17,8 +17,8 @@ const { LoadEnv, IS_DEV } = require("kaven-utils");
 
 // #region DotNev Config File
 const ENV_FILE_PATH = [
-    ".env",
-    ".env.example",
+    "./env/.env",
+    "./env/.env.example",
 ];
 
 LoadEnv(__dirname, ...ENV_FILE_PATH);
