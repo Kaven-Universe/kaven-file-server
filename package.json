@@ -15,6 +15,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "express": "^4.17.1",
+    "kaven-utils": "^3.0.4",
     "multer": "^1.4.3"
   },
   "devDependencies": {
