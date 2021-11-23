@@ -4,10 +4,10 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /config.js
  * @create:      2021-11-23 17:30:37.304
- * @modify:      2021-11-23 17:34:39.627
+ * @modify:      2021-11-23 17:48:36.604
  * @version:     1.0.1
- * @times:       2
- * @lines:       52
+ * @times:       3
+ * @lines:       60
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
@@ -36,6 +36,10 @@ const ENABLE_LOG = process.env.ENABLE_LOG !== "false";
 const LOG_FILE_PATH = process.env.LOG_FILE_PATH;
 const ERROR_FILE_PATH = process.env.ERROR_FILE_PATH;
 
+const ENABLE_AUTHENTICATION = process.env.ENABLE_AUTHENTICATION !== "false";
+const AUTH_USER = process.env.AUTH_USER;
+const AUTH_PASS = process.env.AUTH_PASS;
+
 module.exports = {
     IS_DEBUG,
 
@@ -48,4 +52,8 @@ module.exports = {
     ENABLE_LOG,
     LOG_FILE_PATH,
     ERROR_FILE_PATH,
+
+    ENABLE_AUTHENTICATION,
+    AUTH_USER,
+    AUTH_PASS,
 };
