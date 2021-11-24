@@ -3,23 +3,23 @@
 ## Docker
 
 ```sh
-# Linux
+# copy `.env` file
+docker run --name temp -d kavenzero/kaven-file-server:latest
+mkdir env
+docker cp temp:/env/.env.example $(pwd)/env/.env
+docker rm -f temp
+
+# run
 docker run -d \
     -it \
     --name kaven-file-server \
     -p 3000:80 \
     -v $(pwd)/uploads:/app/uploads \
     -v $(pwd)/env:/app/env \
-    kavenzero/kaven-file-server:main
-
-# Powershell
-docker run -d -it --name kaven-file-server -p 3000:80 -v ${PWD}/uploads:/app/uploads -v ${PWD}/env:/app/env kavenzero/kaven-file-server:main
-
-# CMD
-docker run -d -it --name kaven-file-server -p 3000:80 -v %cd%/uploads:/app/uploads %cd%/env:/app/env kavenzero/kaven-file-server:main
+    kavenzero/kaven-file-server:latest
 ```
 
-`/env/.env.example`
+`/env/.env`
 
 ```ini
 NODE_ENV=development
