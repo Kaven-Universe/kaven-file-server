@@ -1,6 +1,6 @@
 {
   "name": "kaven-file-server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple http server for file upload.",
   "main": "server.js",
   "scripts": {
