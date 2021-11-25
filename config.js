@@ -4,9 +4,9 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /config.js
  * @create:      2021-11-23 17:30:37.304
- * @modify:      2021-11-25 13:24:21.939
+ * @modify:      2021-11-25 13:57:13.114
  * @version:     1.0.2
- * @times:       13
+ * @times:       14
  * @lines:       74
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
@@ -42,7 +42,7 @@ const ENABLE_AUTHENTICATION = process.env.ENABLE_AUTHENTICATION !== "false";
 const AUTH_USER = process.env.AUTH_USER;
 const AUTH_PASS = process.env.AUTH_PASS;
 
-const ALLOW_UPLOAD_TO_SUB_DIR = process.env.ALLOW_UPLOAD_TO_SUB_DIR !== "false"
+const ALLOW_UPLOAD_TO_SUB_DIR = process.env.ALLOW_UPLOAD_TO_SUB_DIR !== "false";
 const FORM_DATA_FIELD_FILE = process.env.FORM_DATA_FIELD_FILE;
 const FORM_DATA_FIELD_DIR = process.env.FORM_DATA_FIELD_DIR;
 

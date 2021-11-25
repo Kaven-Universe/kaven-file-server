@@ -1,7 +1,7 @@
 {
   "name": "kaven-file-server",
   "version": "1.0.1",
-  "description": "",
+  "description": "A simple http server for file upload.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

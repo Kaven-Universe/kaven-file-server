@@ -10,7 +10,7 @@ LABEL name="kaven-file-server" \
     author="Kaven" \
     email="kaven@wuwenkai.com" \
     version="1.0.1" \
-    description=""
+    description="A simple http server for file upload."
 
 EXPOSE 80:80
 CMD [ "node", "index.js" ]
