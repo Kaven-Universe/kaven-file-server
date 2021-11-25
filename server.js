@@ -4,10 +4,10 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /server.js
  * @create:      2021-11-18 15:22:36.251
- * @modify:      2021-11-23 18:06:47.696
- * @version:     1.0.1
- * @times:       18
- * @lines:       83
+ * @modify:      2021-11-25 10:34:06.931
+ * @version:     1.0.2
+ * @times:       19
+ * @lines:       89
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
@@ -18,7 +18,13 @@ const fs = require("fs");
 const multer = require("multer");
 const { FileSize } = require("kaven-utils");
 
-module.exports = function KavenFileServer(dir, filedName = "file") {
+/**
+ * 
+ * @param {string} dir 
+ * @param {string} filedName 
+ * @returns 
+ */
+module.exports = function KavenFileServer(dir, filedName) {
 
     if (!dir) {
         throw new Error("dir is required.");

@@ -4,22 +4,21 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /index.js
  * @create:      2021-11-18 15:55:12.122
- * @modify:      2021-11-23 17:51:16.555
- * @version:     1.0.1
- * @times:       12
- * @lines:       44
+ * @modify:      2021-11-25 10:44:19.029
+ * @version:     1.0.2
+ * @times:       14
+ * @lines:       43
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
 
-const { join } = require("path");
 const express = require("express");
 const { CreateExpressLogger, StartServer, CreateCertificate, SaveStringToFile, KavenDigestAuthentication } = require("kaven-utils");
 
 const { 
-    PORT, ENABLE_LOG, LOG_FILE_PATH, ERROR_FILE_PATH, ENABLE_HTTPS, SSL_CERT_PATH, SSL_KEY_PATH, 
-    ENABLE_AUTHENTICATION, AUTH_USER, AUTH_PASS,
+    PORT, UPLOAD_ROOT, ENABLE_LOG, LOG_FILE_PATH, ERROR_FILE_PATH, ENABLE_HTTPS, SSL_CERT_PATH, SSL_KEY_PATH, 
+    ENABLE_AUTHENTICATION, AUTH_USER, AUTH_PASS, FORM_DATA_FIELD_NAME,
 } = require("./config");
 const server = require("./server");
 
@@ -31,7 +30,7 @@ if (ENABLE_AUTHENTICATION) {
 }
 
 app.use(CreateExpressLogger());
-app.use("/", server(join(__dirname, "uploads")));
+app.use("/", server(UPLOAD_ROOT, FORM_DATA_FIELD_NAME));
 
 StartServer(app, PORT, {
     enableLog: ENABLE_LOG,

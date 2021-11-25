@@ -4,15 +4,16 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /config.js
  * @create:      2021-11-23 17:30:37.304
- * @modify:      2021-11-23 18:19:23.360
- * @version:     1.0.1
- * @times:       4
- * @lines:       60
+ * @modify:      2021-11-25 10:44:19.032
+ * @version:     1.0.2
+ * @times:       6
+ * @lines:       67
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
 
+const { isAbsolute, join } = require("path");
 const { LoadEnv, IS_DEV } = require("kaven-utils");
 
 // #region DotNev Config File
@@ -27,6 +28,7 @@ LoadEnv(__dirname, ...ENV_FILE_PATH);
 const IS_DEBUG = IS_DEV();
 
 const PORT = Number(process.env.PORT);
+const UPLOAD_ROOT = isAbsolute(process.env.UPLOAD_ROOT) ? process.env.UPLOAD_ROOT : join(__dirname, process.env.UPLOAD_ROOT);
 
 const ENABLE_HTTPS = process.env.ENABLE_HTTPS !== "false";
 const SSL_KEY_PATH = process.env.SSL_KEY_PATH;
@@ -40,10 +42,13 @@ const ENABLE_AUTHENTICATION = process.env.ENABLE_AUTHENTICATION !== "false";
 const AUTH_USER = process.env.AUTH_USER;
 const AUTH_PASS = process.env.AUTH_PASS;
 
+const FORM_DATA_FIELD_NAME = process.env.FORM_DATA_FIELD_NAME;
+
 module.exports = {
     IS_DEBUG,
 
     PORT,
+    UPLOAD_ROOT,
 
     ENABLE_HTTPS,
     SSL_KEY_PATH,
@@ -56,4 +61,6 @@ module.exports = {
     ENABLE_AUTHENTICATION,
     AUTH_USER,
     AUTH_PASS,
+
+    FORM_DATA_FIELD_NAME,
 };
