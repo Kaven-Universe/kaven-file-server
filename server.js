@@ -4,9 +4,9 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /server.js
  * @create:      2021-11-18 15:22:36.251
- * @modify:      2021-11-26 22:46:45.781
+ * @modify:      2021-11-27 07:09:20.590
  * @version:     1.0.3
- * @times:       38
+ * @times:       39
  * @lines:       177
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
@@ -136,7 +136,7 @@ function KavenFileServer(uploadRootDir, options = KavenFileServerOptions()) {
     const upload = options.fieldFile ? m.array(options.fieldFile) : m.any();
 
     router.get("/", (req, res) => {
-        res.send("Kaven File Server");
+        res.send("<a href='https://github.com/Kaven-Universe/kaven-file-server'>Kaven File Server</a>");
     });
 
     router.post("/file", (req, res) => {
