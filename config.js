@@ -4,10 +4,10 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /config.js
  * @create:      2021-11-23 17:30:37.304
- * @modify:      2021-11-25 13:57:13.114
- * @version:     1.0.2
- * @times:       14
- * @lines:       74
+ * @modify:      2021-11-26 21:45:32.377
+ * @version:     1.0.3
+ * @times:       15
+ * @lines:       78
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
@@ -42,7 +42,9 @@ const ENABLE_AUTHENTICATION = process.env.ENABLE_AUTHENTICATION !== "false";
 const AUTH_USER = process.env.AUTH_USER;
 const AUTH_PASS = process.env.AUTH_PASS;
 
-const ALLOW_UPLOAD_TO_SUB_DIR = process.env.ALLOW_UPLOAD_TO_SUB_DIR !== "false";
+const ALLOW_UPLOAD_TO_SUB_DIR = process.env.ALLOW_UPLOAD_TO_SUB_DIR === "true";
+const ALLOW_OVERRIDE_EXISTING_FILE = process.env.ALLOW_OVERRIDE_EXISTING_FILE === "true";
+
 const FORM_DATA_FIELD_FILE = process.env.FORM_DATA_FIELD_FILE;
 const FORM_DATA_FIELD_DIR = process.env.FORM_DATA_FIELD_DIR;
 
@@ -65,6 +67,8 @@ module.exports = {
     AUTH_PASS,
 
     ALLOW_UPLOAD_TO_SUB_DIR,
+    ALLOW_OVERRIDE_EXISTING_FILE,
+    
     FORM_DATA_FIELD_FILE,
     FORM_DATA_FIELD_DIR,
 };

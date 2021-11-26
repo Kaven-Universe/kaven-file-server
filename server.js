@@ -4,30 +4,36 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /server.js
  * @create:      2021-11-18 15:22:36.251
- * @modify:      2021-11-26 12:28:54.079
+ * @modify:      2021-11-26 22:23:16.034
  * @version:     1.0.3
- * @times:       33
- * @lines:       145
+ * @times:       37
+ * @lines:       170
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
 
-const { Router } = require("express");
-const fs = require("fs");
-const multer = require("multer");
-const { FileSize, IsString, Distinct } = require("kaven-utils");
+const { existsSync, mkdirSync } = require("fs");
 const { join, isAbsolute } = require("path");
 
+const { Router } = require("express");
+const multer = require("multer");
+const { FileSize, IsString, Distinct } = require("kaven-utils");
+
+function KavenFileServerOptions() {
+    return {
+        fieldFile: "file",
+        fieldDir: "dir",
+        allowUploadToSubDir: true,
+        allowOverrideExistingFile: true,
+    };
+}
+
 /**
-  * 
-  * @param {string} uploadRootDir 
-  * @param {string} filedFile Default `file`
-  * @param {string} fieldDir Default `dir`
-  * @param {boolean} allowUploadToSubDir Default `true`
-  * @returns 
-  */
-module.exports = function KavenFileServer(uploadRootDir, filedFile = "file", fieldDir = "dir", allowUploadToSubDir = true) {
+ * 
+ * @param {string} uploadRootDir 
+ */
+function KavenFileServer(uploadRootDir, options = KavenFileServerOptions()) {
 
     if (!uploadRootDir) {
         throw new Error("dir is required.");
@@ -59,6 +65,8 @@ module.exports = function KavenFileServer(uploadRootDir, filedFile = "file", fie
         return undefined;
     };
 
+    const map = new Map();
+
     // https://github.com/expressjs/multer/issues/914#issuecomment-654084057
     // Note that req.body might not have been fully populated yet.
     // It depends on the order that the client transmits fields and files to the server.
@@ -68,18 +76,20 @@ module.exports = function KavenFileServer(uploadRootDir, filedFile = "file", fie
             try {
                 let saveDir = uploadRootDir;
 
-                if (allowUploadToSubDir) {
+                if (options.allowUploadToSubDir) {
                     const fieldName = `${file.fieldname}_dir`;
-                    const subDir = tryGetField(req.body, fieldName) || tryGetField(req.body, fieldDir);
+                    const subDir = tryGetField(req.body, fieldName) || tryGetField(req.body, options.fieldDir);
                     if (subDir && !isAbsolute(subDir)) {
                         saveDir = join(uploadRootDir, subDir);
                     }
                 }
 
-                if (!fs.existsSync(saveDir)) {
-                    fs.mkdirSync(saveDir, { recursive: true });
+                if (!existsSync(saveDir)) {
+                    mkdirSync(saveDir, { recursive: true });
                     console.log(`mkdir: ${saveDir}`);
                 }
+
+                map.set(file, saveDir);
 
                 cb(null, saveDir);
             } catch (ex) {
@@ -96,9 +106,19 @@ module.exports = function KavenFileServer(uploadRootDir, filedFile = "file", fie
                     saveName = name;
                 }
 
+                if (!options.allowOverrideExistingFile) {
+                    const saveDir = map.get(file);
+                    if (existsSync(join(saveDir, saveName))) {
+                        cb(new Error("File already exists."));
+                        return;
+                    }
+                }
+
                 cb(null, saveName);
             } catch (ex) {
                 cb(ex);
+            } finally {
+                map.delete(file);
             }
         },
     });
@@ -106,7 +126,7 @@ module.exports = function KavenFileServer(uploadRootDir, filedFile = "file", fie
     const m = multer({
         storage: storage,
     });
-    const upload = filedFile ? m.array(filedFile) : m.any();
+    const upload = options.fieldFile ? m.array(options.fieldFile) : m.any();
 
     router.get("/", (req, res) => {
         res.send("Kaven File Server");
@@ -141,4 +161,9 @@ module.exports = function KavenFileServer(uploadRootDir, filedFile = "file", fie
     });
 
     return router;
+}
+
+module.exports = {
+    KavenFileServerOptions,
+    KavenFileServer,
 };
