@@ -20,6 +20,6 @@
   },
   "devDependencies": {
     "@wenkai.wu/eslint-config": "^1.0.5",
-    "eslint": "^8.2.0"
+    "eslint": "^8.3.0"
   }
 }
