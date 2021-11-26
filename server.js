@@ -4,17 +4,17 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /server.js
  * @create:      2021-11-18 15:22:36.251
- * @modify:      2021-11-26 22:23:16.034
+ * @modify:      2021-11-26 22:46:45.781
  * @version:     1.0.3
- * @times:       37
- * @lines:       170
+ * @times:       38
+ * @lines:       177
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
 
 const { existsSync, mkdirSync } = require("fs");
-const { join, isAbsolute } = require("path");
+const { join, isAbsolute, normalize } = require("path");
 
 const { Router } = require("express");
 const multer = require("multer");
@@ -106,9 +106,16 @@ function KavenFileServer(uploadRootDir, options = KavenFileServerOptions()) {
                     saveName = name;
                 }
 
-                if (!options.allowOverrideExistingFile) {
-                    const saveDir = map.get(file);
-                    if (existsSync(join(saveDir, saveName))) {
+                const saveDir = map.get(file);
+                const filePath = join(saveDir, saveName);
+
+                if (!normalize(filePath).startsWith(uploadRootDir)) {
+                    cb(new Error("Cannot save the file outside the root directory."));
+                    return;
+                }
+
+                if (!options.allowOverrideExistingFile) {                   
+                    if (existsSync(filePath)) {
                         cb(new Error("File already exists."));
                         return;
                     }
