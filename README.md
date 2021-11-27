@@ -1,6 +1,6 @@
 # kaven-file-server
 
-A simple http server for file upload.
+A simple http(s) server for file upload.
 
 ## [Docker](https://hub.docker.com/repository/docker/kavenzero/kaven-file-server)
 
