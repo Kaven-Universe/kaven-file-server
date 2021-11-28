@@ -24,6 +24,20 @@ docker run -d \
 docker run -d -it --name kaven-file-server -p 3000:80 -v ${PWD}/uploads:/app/uploads -v ${PWD}/env:/app/env kavenzero/kaven-file-server:latest
 ```
 
+## API
+
+POST `/file`
+
+```sh
+curl -F "file=@/path/to/file" http://localhost/file
+
+curl \
+    -F "file_name=new name" \
+    -F "dir=sub/dir/" \
+    -F "file=@/path/to/file" \
+    http://localhost/file
+```
+
 ## FormData
 
 Upload one file:
