@@ -2,7 +2,7 @@
 
 A simple http(s) server for file upload.
 
-## [Docker](https://hub.docker.com/repository/docker/kavenzero/kaven-file-server)
+## [Docker](https://hub.docker.com/r/kavenzero/kaven-file-server)
 
 ```sh
 # copy `.env` file
