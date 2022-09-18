@@ -4,11 +4,11 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /server.js
  * @create:      2021-11-18 15:22:36.251
- * @modify:      2021-11-27 07:09:20.590
- * @version:     1.0.3
- * @times:       39
+ * @modify:      2022-09-18 23:48:11.681
+ * @version:     1.0.5
+ * @times:       40
  * @lines:       177
- * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
+ * @copyright:   Copyright © 2021-2022 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
@@ -18,7 +18,7 @@ const { join, isAbsolute, normalize } = require("path");
 
 const { Router } = require("express");
 const multer = require("multer");
-const { FileSize, IsString, Distinct } = require("kaven-utils");
+const { FileSize, IsString, Distinct } = require("kaven-basic");
 
 function KavenFileServerOptions() {
     return {
