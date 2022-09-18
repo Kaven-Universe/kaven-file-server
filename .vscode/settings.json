@@ -5,8 +5,10 @@
         "fieldname",
         "kaven",
         "kavenzero",
+        "linklocal",
         "mkdir",
         "originalname",
+        "uniquelocal",
         "wenkai"
     ],
     "files.exclude": {

@@ -4,11 +4,11 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /index.js
  * @create:      2021-11-18 15:55:12.122
- * @modify:      2021-11-27 07:09:20.594
- * @version:     1.0.3
- * @times:       23
- * @lines:       51
- * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
+ * @modify:      2022-09-18 23:02:57.366
+ * @version:     1.0.4
+ * @times:       24
+ * @lines:       53
+ * @copyright:   Copyright © 2021-2022 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
@@ -24,6 +24,8 @@ const {
 const { KavenFileServer, KavenFileServerOptions } = require("./server");
 
 const app = express();
+
+app.set("trust proxy", "loopback, linklocal, uniquelocal");
 
 if (ENABLE_AUTHENTICATION) {
     const auth = new KavenDigestAuthentication(AUTH_USER, AUTH_PASS);
