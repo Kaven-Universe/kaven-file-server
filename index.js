@@ -4,17 +4,17 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /index.js
  * @create:      2021-11-18 15:55:12.122
- * @modify:      2022-09-18 23:02:57.366
- * @version:     1.0.4
- * @times:       24
- * @lines:       53
+ * @modify:      2022-09-20 14:48:03.478
+ * @version:     1.0.6
+ * @times:       27
+ * @lines:       57
  * @copyright:   Copyright © 2021-2022 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
 
 const express = require("express");
-const { CreateExpressLogger, StartServer, KavenDigestAuthentication } = require("kaven-utils");
+const { CreateExpressAuthentication, CreateExpressLogger, StartServer, KavenDigestAuthentication, KavenAuthorizationRecords } = require("kaven-utils");
 
 const { 
     PORT, UPLOAD_ROOT, ENABLE_LOG, LOG_FILE_PATH, ERROR_FILE_PATH, ENABLE_HTTPS, SSL_CERT_PATH, SSL_KEY_PATH, 
@@ -27,12 +27,16 @@ const app = express();
 
 app.set("trust proxy", "loopback, linklocal, uniquelocal");
 
-if (ENABLE_AUTHENTICATION) {
-    const auth = new KavenDigestAuthentication(AUTH_USER, AUTH_PASS);
-    app.use(auth.RequestHandler);
-}
-
 app.use(CreateExpressLogger());
+
+if (ENABLE_AUTHENTICATION) {
+    const authentication = new KavenDigestAuthentication(AUTH_USER, AUTH_PASS);
+    authentication.Records = new KavenAuthorizationRecords();
+
+    const { handler } = CreateExpressAuthentication(authentication);
+    
+    app.use(handler);
+}
 
 const options = KavenFileServerOptions();
 options.fieldFile = FORM_DATA_FIELD_FILE;
