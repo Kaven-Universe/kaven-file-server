@@ -4,10 +4,10 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /server.js
  * @create:      2021-11-18 15:22:36.251
- * @modify:      2022-09-18 23:48:11.681
- * @version:     1.0.5
- * @times:       40
- * @lines:       177
+ * @modify:      2022-09-20 16:26:48.045
+ * @version:     1.0.6
+ * @times:       42
+ * @lines:       181
  * @copyright:   Copyright © 2021-2022 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
@@ -25,7 +25,7 @@ function KavenFileServerOptions() {
         fieldFile: "file",
         fieldDir: "dir",
         allowUploadToSubDir: true,
-        allowOverrideExistingFile: true,
+        allowOverrideExistingFile: true,        
     };
 }
 
@@ -138,6 +138,10 @@ function KavenFileServer(uploadRootDir, options = KavenFileServerOptions()) {
     router.get("/", (req, res) => {
         res.send("<a href='https://github.com/Kaven-Universe/kaven-file-server'>Kaven File Server</a>");
     });
+
+    if (options.authHandler) {
+        router.use(options.authHandler);
+    }
 
     router.post("/file", (req, res) => {
         upload(req, res, async function(err) {
