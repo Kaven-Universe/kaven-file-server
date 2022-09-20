@@ -5,13 +5,13 @@ specifiers:
   eslint: ^8.23.1
   express: ^4.18.1
   kaven-basic: ^4.2.1
-  kaven-utils: ^4.3.5
+  kaven-utils: ^4.3.6
   multer: 1.4.5-lts.1
 
 dependencies:
   express: 4.18.1
   kaven-basic: 4.2.1
-  kaven-utils: 4.3.5
+  kaven-utils: 4.3.6
   multer: 1.4.5-lts.1
 
 devDependencies:
@@ -1106,8 +1106,8 @@ packages:
     resolution: {integrity: sha512-MbNOjBNXwakmI6N/uGyxlHwSBpCnwj43cBEdaVvq7UHPB+/omCoDsVcaLfcSanQAJ8gFOc+RX0vFRUUWGwvZfA==}
     dev: false
 
-  /kaven-utils/4.3.5:
-    resolution: {integrity: sha512-GhyyQfeyUVt9vkhvPG7kL2uqTRX2w09TbPaUof8AJ7T2BER1ot3gpnHdoibrmIsY9+I07fj1ncSpavlc3Rplbg==}
+  /kaven-utils/4.3.6:
+    resolution: {integrity: sha512-O5awDtTge6By46A78KyfB9OAa491OzYlEi7Vo9bu+ryIywKMh44bHDgAo/FBsNWWXUig+VoXGQR6Ik2/ezdl1Q==}
     hasBin: true
     dependencies:
       ansi_up: 5.1.0
