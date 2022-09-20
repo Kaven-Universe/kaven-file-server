@@ -4,17 +4,17 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /config.js
  * @create:      2021-11-23 17:30:37.304
- * @modify:      2021-11-26 21:45:32.377
- * @version:     1.0.3
- * @times:       15
+ * @modify:      2022-09-20 21:18:24.452
+ * @version:     1.0.6
+ * @times:       16
  * @lines:       78
- * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
+ * @copyright:   Copyright © 2021-2022 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
 
 const { isAbsolute, join } = require("path");
-const { LoadEnv, IS_DEV } = require("kaven-utils");
+const { LoadEnv, IS_DEV, KavenLogger } = require("kaven-utils");
 
 // #region DotNev Config File
 const ENV_FILE_PATH = [
@@ -74,5 +74,5 @@ module.exports = {
 };
 
 if (IS_DEBUG) {
-    console.log(JSON.stringify(module.exports, undefined, 2));
+    KavenLogger.Default.Info(JSON.stringify(module.exports, undefined, 2));
 }
