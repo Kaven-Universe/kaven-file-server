@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@wenkai.wu/eslint-config': ^1.0.6
+  '@wenkai.wu/eslint-config': ^1.0.7
   eslint: ^8.23.1
   express: ^4.18.1
   kaven-basic: ^4.2.1
@@ -15,7 +15,7 @@ dependencies:
   multer: 1.4.5-lts.1
 
 devDependencies:
-  '@wenkai.wu/eslint-config': 1.0.6_eslint@8.23.1
+  '@wenkai.wu/eslint-config': 1.0.7_eslint@8.23.1
   eslint: 8.23.1
 
 packages:
@@ -86,8 +86,8 @@ packages:
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
     dev: false
 
-  /@wenkai.wu/eslint-config/1.0.6_eslint@8.23.1:
-    resolution: {integrity: sha512-16DZv+DhDQeF54OSX3PZMSQ4v4/hLh4t9ogeGjmqHSsK4scBB9BPQuJdPAGFB7cRjFynRRHlCyzrykhvfeOk6w==}
+  /@wenkai.wu/eslint-config/1.0.7_eslint@8.23.1:
+    resolution: {integrity: sha512-4f1M+v/iAEzyDAmjFn/iXxNDJ7cQ0xo7/vd+QXN/bpx5vljOngAdkdic4qBmXuuRb01eyiJnijTZnTB3XWIxyw==}
     peerDependencies:
       eslint: '>= 3'
     dependencies:
