@@ -19,7 +19,7 @@ COPY env env
 LABEL name="kaven-file-server" \
     author="Kaven" \
     email="kaven@wuwenkai.com" \
-    version="1.0.6" \
+    version="1.0.7" \
     description="A simple http(s) server for file upload."
 
 EXPOSE 80:80
