@@ -6,7 +6,7 @@ COPY . .
 
 RUN npm install --production && npm i -g @vercel/ncc
 
-RUN ncc build index.js -o dist
+RUN ncc build index.js -o dist --minify
 
 FROM node:lts-alpine
 

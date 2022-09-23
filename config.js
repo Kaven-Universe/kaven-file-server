@@ -4,10 +4,10 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /config.js
  * @create:      2021-11-23 17:30:37.304
- * @modify:      2022-09-20 21:18:24.452
- * @version:     1.0.6
- * @times:       16
- * @lines:       78
+ * @modify:      2022-09-23 23:40:02.227
+ * @version:     1.0.7
+ * @times:       17
+ * @lines:       74
  * @copyright:   Copyright © 2021-2022 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
@@ -24,8 +24,6 @@ const ENV_FILE_PATH = [
 
 LoadEnv(__dirname, ...ENV_FILE_PATH);
 // #endregion
-
-const IS_DEBUG = IS_DEV();
 
 const PORT = Number(process.env.PORT);
 const UPLOAD_ROOT = isAbsolute(process.env.UPLOAD_ROOT) ? process.env.UPLOAD_ROOT : join(__dirname, process.env.UPLOAD_ROOT);
@@ -49,8 +47,6 @@ const FORM_DATA_FIELD_FILE = process.env.FORM_DATA_FIELD_FILE;
 const FORM_DATA_FIELD_DIR = process.env.FORM_DATA_FIELD_DIR;
 
 module.exports = {
-    IS_DEBUG,
-
     PORT,
     UPLOAD_ROOT,
 
@@ -73,6 +69,6 @@ module.exports = {
     FORM_DATA_FIELD_DIR,
 };
 
-if (IS_DEBUG) {
+if (IS_DEV()) {
     KavenLogger.Default.Info(JSON.stringify(module.exports, undefined, 2));
 }

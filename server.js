@@ -4,9 +4,9 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /server.js
  * @create:      2021-11-18 15:22:36.251
- * @modify:      2022-09-20 21:18:24.450
- * @version:     1.0.6
- * @times:       43
+ * @modify:      2022-09-23 22:07:31.038
+ * @version:     1.0.7
+ * @times:       44
  * @lines:       181
  * @copyright:   Copyright © 2021-2022 Kaven. All Rights Reserved.
  * @description: [description]
@@ -86,7 +86,7 @@ function KavenFileServer(uploadRootDir, options = KavenFileServerOptions()) {
 
                 if (!existsSync(saveDir)) {
                     mkdirSync(saveDir, { recursive: true });
-                    console.log(`mkdir: ${saveDir}`);
+                    KavenLogger.Default.Info(`mkdir: ${saveDir}`);
                 }
 
                 map.set(file, saveDir);
