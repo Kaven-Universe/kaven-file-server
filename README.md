@@ -6,9 +6,8 @@ A simple http(s) server for file upload.
 
 ```sh
 # copy `.env` file
-mkdir env
 docker run --name temp -d kavenzero/kaven-file-server:latest
-docker cp temp:/app/env/.env.example $(pwd)/env/.env
+docker cp temp:/app/.config.example.json $(pwd)/.config.json
 docker rm -f temp
 
 # run
@@ -17,7 +16,7 @@ docker run -d \
     --name kaven-file-server \
     -p 3000:80 \
     -v $(pwd)/uploads:/app/uploads \
-    -v $(pwd)/env:/app/env \
+    -v $(pwd)/.config.json:/app/.config.json \
     kavenzero/kaven-file-server:latest
 
 # Powershell
@@ -29,13 +28,13 @@ docker run -d -it --name kaven-file-server -p 3000:80 -v ${PWD}/uploads:/app/upl
 POST `/file`
 
 ```sh
-curl -F "file=@/path/to/file" http://localhost/file
+curl -F "file=@/path/to/file" http://127.0.0.1/file
 
 curl \
     -F "file_name=new name" \
     -F "dir=sub/dir/" \
     -F "file=@/path/to/file" \
-    http://localhost/file
+    http://127.0.0.1/file
 ```
 
 ## FormData
