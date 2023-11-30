@@ -5,7 +5,7 @@ A simple http(s) server for file upload.
 ## [Docker](https://hub.docker.com/r/kavenzero/kaven-file-server)
 
 ```sh
-# copy `.env` file
+# copy `.config.example.json` file
 docker run --name temp -d kavenzero/kaven-file-server:latest
 docker cp temp:/app/.config.example.json $(pwd)/.config.json
 docker rm -f temp
@@ -20,7 +20,7 @@ docker run -d \
     kavenzero/kaven-file-server:latest
 
 # Powershell
-docker run -d -it --name kaven-file-server -p 3000:80 -v ${PWD}/uploads:/app/uploads -v ${PWD}/env:/app/env kavenzero/kaven-file-server:latest
+docker run -d -it --name kaven-file-server -p 3000:80 -v ${PWD}/uploads:/app/uploads -v ${PWD}/.config.json:/app/.config.json kavenzero/kaven-file-server:latest
 ```
 
 ## API
