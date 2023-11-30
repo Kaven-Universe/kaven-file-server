@@ -24,7 +24,8 @@ module.exports = {
         "@wenkai.wu/eslint-config",
     ],
     parserOptions: {
-        ecmaVersion: 13,
+        ecmaVersion: "latest",
+        sourceType: "module",
     },
     rules: {
     },

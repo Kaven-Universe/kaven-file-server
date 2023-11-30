@@ -4,23 +4,23 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [kaven-file-server] /server.js
  * @create:      2021-11-18 15:22:36.251
- * @modify:      2022-09-23 22:07:31.038
- * @version:     1.0.7
- * @times:       44
- * @lines:       181
- * @copyright:   Copyright © 2021-2022 Kaven. All Rights Reserved.
+ * @modify:      2023-11-30 14:33:26.852
+ * @version:     1.0.8
+ * @times:       47
+ * @lines:       175
+ * @copyright:   Copyright © 2021-2023 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
 
-const { existsSync, mkdirSync } = require("fs");
-const { join, isAbsolute, normalize } = require("path");
-const { Router } = require("express");
-const multer = require("multer");
-const { FileSize, IsString, Distinct } = require("kaven-basic");
-const { KavenLogger } = require("kaven-utils");
+import { Router } from "express";
+import { Distinct, FileSize, IsString } from "kaven-basic";
+import { KavenLogger } from "kaven-utils";
+import multer, { diskStorage } from "multer";
+import { existsSync, mkdirSync } from "node:fs";
+import { isAbsolute, join, normalize } from "node:path";
 
-function KavenFileServerOptions() {
+export function KavenFileServerOptions() {
     return {
         fieldFile: "file",
         fieldDir: "dir",
@@ -33,7 +33,7 @@ function KavenFileServerOptions() {
  * 
  * @param {string} uploadRootDir 
  */
-function KavenFileServer(uploadRootDir, options = KavenFileServerOptions()) {
+export function KavenFileServer(uploadRootDir, options = KavenFileServerOptions()) {
 
     if (!uploadRootDir) {
         throw new Error("dir is required.");
@@ -71,7 +71,7 @@ function KavenFileServer(uploadRootDir, options = KavenFileServerOptions()) {
     // Note that req.body might not have been fully populated yet.
     // It depends on the order that the client transmits fields and files to the server.
     // Make sure that fields are sent before files.
-    const storage = multer.diskStorage({
+    const storage = diskStorage({
         destination: function(req, file, cb) {
             try {
                 let saveDir = uploadRootDir;
@@ -173,8 +173,3 @@ function KavenFileServer(uploadRootDir, options = KavenFileServerOptions()) {
 
     return router;
 }
-
-module.exports = {
-    KavenFileServerOptions,
-    KavenFileServer,
-};

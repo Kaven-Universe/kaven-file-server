@@ -14,5 +14,6 @@
     "files.exclude": {
         "**/node_modules": true,
         "**/uploads": true
-    }
+    },
+    "Kaven.generateFileHeader.autoGenerateWhenSave": true
 }

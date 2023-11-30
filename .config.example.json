@@ -1,0 +1,24 @@
+{
+    "NODE_ENV": "production",
+    
+    "PORT": 80,
+    "UPLOAD_ROOT": "uploads",
+
+    "ENABLE_HTTPS": false,
+    "SSL_KEY_PATH": "",
+    "SSL_CERT_PATH": "",
+
+    "ENABLE_LOG": false,
+    "LOG_FILE_PATH": "",
+    "ANSI_LOG_FILE_PATH": "",
+
+    "ENABLE_AUTHENTICATION": true,
+    "AUTH_USER": "Kaven",
+    "AUTH_PASS": "kaven@wuwenkai.com",
+
+    "ALLOW_UPLOAD_TO_SUB_DIR": true,
+    "ALLOW_OVERRIDE_EXISTING_FILE": false,
+
+    "FORM_DATA_FIELD_FILE": "",
+    "FORM_DATA_FIELD_DIR": "dir"
+}
