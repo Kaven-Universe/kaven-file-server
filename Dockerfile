@@ -5,7 +5,6 @@ WORKDIR /app
 COPY . .
 
 RUN npm install --production && npm i -g @vercel/ncc
-
 RUN ncc build index.js -o dist --minify
 
 FROM node:lts-alpine
@@ -14,7 +13,7 @@ WORKDIR /app
 
 # COPY --from=build /app/dist .
 COPY --from=build /app/dist/index.js .
-COPY env env
+COPY .config.example.json ./
 
 LABEL name="kaven-file-server" \
     author="Kaven" \
